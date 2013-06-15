@@ -1,0 +1,19 @@
+<link rel="stylesheet" type="text/css" href="st/css/buscar.css" />
+<script type="text/javascript" src="st/js/busq.js"></script>
+<div id="super-search-container">
+	<div id="super-search">
+		<form method="get" action="../bus">
+			<div style="float: left;"><input type="text" name="b" placeholder="Encuentra algo desde aquí" value="{$smarty.get.b}"></div>
+			<div style="float: left; padding: 0 0 0 7px;"><input type="submit" value="Encontrar"></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+	var fts = ({json_encode arreglo=$this->fotos});
+</script>
+
+{if $this->get->b}
+<h3>Resultado de la Búsqueda: <em>{$this->get->b|escape:'html'}</em></h3>
+{/if}
+<div id="fotos">
+</div>

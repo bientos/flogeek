@@ -1,0 +1,10 @@
+<h1 style="padding: 5px;">Fotos</h1>
+<div style="overflow: hidden; padding: 0 20px 30px 20px;">
+{foreach item=foto from=$this->fotos}
+	<div style="padding: 8px; display: inline-block;">
+		<a href="{$this->usuario->usuario_usuario|lower}/{$foto->foto_id}">
+			<img src="http://flogeek.com/img/fotos/{$foto->foto_lote}/{$foto->foto_id}_s.jpg" width="96" height="96">
+		</a>
+	</div>
+{/foreach}
+</div>

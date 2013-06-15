@@ -1,0 +1,93 @@
+<!-- {literal} -->
+<style type="text/css">
+#error-correo {
+	background: #fee;
+	padding: 10px;
+	margin: 10px 0 0 0;
+	line-height: 30px;
+}
+#recuperacion-b {
+	padding: 1.5em;
+	font-size: 2em;
+}
+#form-recu input[type=submit] {
+	font-weight: bold;
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 80px;
+	line-height: 32px;
+	border: solid 1px #c0c0c0;
+	background: #c0c0c0;
+	height: 32px;
+	font-family: 'Strait', sans-serif;
+	font-size: 1.10em; 
+	font-weight: normal;
+	color: #666;
+	border-radius: 4px;
+	background: -moz-linear-gradient(-90deg,#f0f0f0,#dfdfdf);
+	background: -webkit-linear-gradient(-90deg,#f0f0f0,#dfdfdf);
+}
+#form-recu input[type=text] {
+	width: 210px;
+	line-height: 35px;
+	padding: 0 5px 0 48px;
+	font-size: 18px;
+	height: 35px;
+	border: solid 1px #dfdfdf;
+	background: #fff url(../st/images/at.png) no-repeat 4px 4px;
+	font-family: 'Strait', sans-serif;
+}
+#form-recu input[type=submit]:active {
+	background: -moz-linear-gradient(-90deg,#dfdfdf,#f0f0f0);
+	background: -webkit-linear-gradient(-90deg,#dfdfdf,#f0f0f0);
+}
+#form-recu input[type=submit]:hover {
+	color: #000;
+	border-color: #666;
+}
+#form-recu input[type=text]:focus {
+	outline-color: yellowgreen;
+}
+</style>
+<script type="text/javascript">
+	var btenv = $('#boton-enviar');
+	$(window).on('load', function() {
+		$('#form-recu').on('submit', function() {
+			btenv.attr('disabled',true);
+			$.post('reg/genrecup', $('#form-recu').serialize(), function(r) {
+				if(r.status === 'OK') {
+					$('#recuperacion').fadeOut(200, function() {
+						$('#recuperacion-b').fadeIn(200);
+					});
+				} else {
+					$('#error-correo').text('Este correo no está registrado.').slideDown(300, function() {
+						$(this).animate({fontSize:'1.2em'}, 200, function() {
+							$(this).animate({fontSize:'1em'}, 200);
+						});
+					});
+					btenv.attr('disabled',null);
+				}
+			},'json');
+			return false;
+		});
+	});
+</script>
+<!-- {/literal} -->
+<div id="recuperacion">
+	<h1 style="padding: 0 0 0 20px;">Recuperación de Contraseña</h1>
+	<div style="padding: 0 0 0 20px;">
+		Se te enviará un correo con la información de recuperación de tu contraseña.
+	</div>
+	<form id="form-recu">
+		<div id="entrada" style="padding: 20px 20px 0 20px;">
+			<input type="text" name="correo">
+			<div id="error-correo" style="display: none;"> </div>
+		</div>
+		<div id="botones" style="padding: 20px 20px;">
+			<input type="submit" value="Envíamelo" id="boton-enviar">
+		</div>
+	</form>
+</div>
+<div id="recuperacion-b" style="display: none;">
+	En breve recibirás el correo para reestablecer tu contraseña.
+</div>

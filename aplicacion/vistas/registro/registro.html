@@ -1,0 +1,70 @@
+<!--{literal} -->
+<script type="text/javascript">
+	$(window).on('load', function() {
+		$('#form-reg').on('submit', function() {
+			$.post('../reg/hazlo', $(this).serialize(), function(r){
+				if(r.status==='OK') {
+					$('#registro').html('Gracias por registrarte!')
+				}
+			},'json');
+		});
+	});
+</script>
+<!-- {/literal} -->
+<style type="text/css">
+{literal}
+#formRegistro{margin: 50px auto 0 auto;width: 550px;}
+#formRegistro table{margin: 0 auto;}
+p.Ayuda{padding: 5px;color: #a0a0a0; width: 250px;}
+input.TextBox{padding: 4px;}
+td.Nombre{line-height: 25px; vertical-align: top; text-align: right;}
+{/literal}
+</style>
+<div id="registro">
+<div class="MensajeError">{$registro.mensaje}</div>
+<form action="reg/hazlo" method="post" name="Registro" id="form-reg">
+<table cellspacing="10" style="margin: 0 auto;">
+	<tr>
+		<td class="Nombre" style="font-size: 20px;">Usuario:</td>
+		<td>
+			<input type="text" name="usuario" maxlength="32" value="{$registro.usuario}" class="TextBox" style="width: 250px; font-size: 20px;" />
+			<p class="Ayuda">
+				Debe ser entre 4 y 16 caracteres, letras, números, punto y guiones, sin espacios.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="Nombre" style="font-size: 20px;line-height: 16px;">Contraseña:<br><span style="font-size: 12px; line-height: 12px;">2 veces</span></td>
+		<td>
+			<input type="password" name="password_a" value="{$registro.password_a}" class="TextBox" style="width: 120px;font-size: 20px;" />
+			<input type="password" name="password_b" value="{$registro.password_b}" class="TextBox"  style="width: 120px;font-size: 20px;" />
+			<p class="Ayuda">
+				Utiliza números, letras, $, %, &, #, *, !, -, _
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td class="Nombre" style="font-size: 20px;">Correo:</td>
+		<td colspan="3"><input type="text" name="mail" value="{$registro.mail}" class="TextBox"  style="width: 250px;font-size: 20px;" /></td>
+	</tr>
+	<tr>
+		<td class="Nombre" style="font-size: 20px;">Captcha:</td>
+		<td colspan="3">
+			<div style="overflow: hidden;">
+				<img src="http://{$smarty.server.HTTP_HOST}/utl/captcha?{$registro.captcha_id}" align="left" style="margin-right: 10px;" />
+				<input type="text" name="catpcha" style="width: 100px; font-size: 20px;" class="TextBox"  />
+			</div>
+			<p class="Ayuda">
+				Reescribe las letras de la imagen en el recuadro de la derecha.
+			</p>
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td style="padding: 15px 0 15px 0;">
+			<input type="submit" name="Registrar" value="Regístrame!" style="width: 100px; height: 32px;">
+		</td>
+	</tr>
+</table>
+</form>
+</div>

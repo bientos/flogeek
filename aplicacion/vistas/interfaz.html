@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{assign var=iserver value="i1.flogeek.com"}
+{assign var=host value=$smarty.server.HTTP_HOST}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<base href="http://{$smarty.server.HTTP_HOST}/">
+	<title>{if $Titulo}{$Titulo}{else}Flogeek - Piensa simple...{/if}</title>
+	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+	<meta name="keywords" content="flogeek,fotoblog,flog,geek,foto,fotos,think,simple,video,videos" />
+	<meta name="description" content="{if $Descripcion}{$Descripcion|regex_replace:'/\n/im':' '|truncate:200}{else}Un fotoblog mejorado para ti que eres geek, registrate para subir tu primer foto.{/if}" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	{if $imagenOG}<meta property="og:image" content="{$imagenOG}" />{/if}
+	<link rel="shortcut icon" href="http://{$smarty.server.HTTP_HOST}/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="http://{$smarty.server.HTTP_HOST}/temas/thinkpro/estilo.css" id="tema" />
+	<link href='http://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/st/js/jquery.js"></script>
+	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/st/js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/fexem.js"></script>
+	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/menus.js"></script>
+	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/jquery.scrollTo.js"></script>
+	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/jquery.mensaje.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div id="cabeza">
+	<div id="busqueda" style="padding-top: 20px;">
+		<form method="get" action="bus">
+			<input type="search" placeholder="Encuentra Algo..." name="b" style="border-radius: 1px; border-top: solid 1px #c0c0c0; border-left: solid 1px #c0c0c0; border-bottom: #999 solid 1px; border-right: #999 solid 1px;" />
+		</form>
+	</div>
+	<a href="http://{$smarty.server.HTTP_HOST}/" class="logo" style="float: left;"></a>
+	
+	<div style="height: 28px; margin-left: 200px; text-align: right; float: left; padding: 5px; width: 550px; padding-top: 0px; position: absolute;">
+	{if $this->sesion->usuario}
+		<div style="z-index: 10000; position: absolute; margin-left: 250px;" class="desplegable">
+			<div class="contenido" style="overflow: hidden;  padding: 10px;  display: none; background: #fff; text-align: left;" id="panelPublicar">
+				{include file="interfaz/publicar.html"}
+			</div>
+			<script type="text/javascript"> /*{literal}*/
+				function mostrarPub() {
+					$('#panelPublicar').slideToggle(100);
+				}/*{/literal} */
+			</script>
+			<div style="background: url(temas/thinkpro/desplegable_linea_abajo.png) repeat-x; overflow: hidden;">
+				<a href="pub" class="boton">¡Publica Algo! ▼</a>
+			</div>
+			
+		</div>
+		<div class="desplegable" style="position: absolute; margin-left: 385px;">
+			<a href="{$this->sesion->usuario->usuario|lower}/fotos" class="boton">Mis fotos</a>
+		</div>
+		<div class="desplegable" style="position: absolute; margin-left: 465px;">
+			<a href="ses/terminar" class="boton">Salir</a>
+		</div>
+	{else}
+		<div class="desplegable" style="width: 300px; position: absolute; margin-left: 400px;">
+			<div class="contenido" style="overflow: hidden; width: 250px; padding: 10px; height: 150px; display: none; background: #fff; text-align: left;" id="panelLogin">
+				<form name="login" onsubmit="return login();" id="form_login" style="float: right; padding-right: 5px;">
+				    <table cellspacing="5" cellpadding="10" style="margin-top: 5px;">
+				        <tr>
+				            <td align="right" style="padding: 5px;">Usuario:</td>
+				            <td style="padding: 5px;">
+								<input type="text" name="usuario" id="cuadroUsuario" class="TextBox" style="width: 140px; padding: 5px background: #fff; font-size: 14px; " />
+							</td>
+						</tr>
+						<tr>
+							<td style="padding: 5px;">Contraseña:</td>
+							<td style="padding: 5px;"><input type="password" name="password" value="" class="TextBox" style="width: 140px;" /></td>
+						</tr>
+						<tr>
+							<td> </td>
+				            <td style="padding: 5px;">
+				            	<input type="submit" id="boton-login" value="¡Conéctate!" name="entrar" style="width: 90px; height: 30px;" />
+				            	<input type="button" value="X" onclick="mostrarLogin();" style="height: 30px;" />
+				            	<div style="margin: 15px 0 0 0; font-size: 1.10em;">
+				            		<a href="../reg/recuperar">Devuélveme la contraseña</a>
+				            	</div>
+							</td>
+				            <td><input type="hidden" name="Pagina" value="{$smarty.server.REQUEST_URI|base64}" /></td>
+				        </tr>
+				    </table>
+				</form>
+			</div>
+			<script type="text/javascript"> /*{literal}*/
+				$(window).on('load',function() {
+					$('#boton-login').on('click', login);
+					//$('#form_login').on('submit', login);
+				});
+				function login(){
+					$.post('../ses/iniciar',$('#form_login').serialize(),function(r){
+						if( r.status == 'OK' )
+							location.reload(true);
+						else if( r.status == 'NO_VALIDO' && $('#loginMsg').css('display') == 'none' )
+							$('#loginMsg').slideDown(100).delay(2000).slideUp(100);
+					},'json');
+					return false;
+				}
+				function mostrarLogin() {
+					$('#panelLogin').slideToggle(100);
+					$('#cuadroUsuario').focus();
+				}/*{/literal} */
+			</script>
+			<div id="loginMsg" style="text-shadow: 1px 1px 0 #ff2233; display: none; padding: 5px; text-align: center; color: #fff; background: #ff6655; font-size: 12px; font-weight: bold;">Usuario o contraseña no válida.</div>
+			<div style="background: url(temas/thinkpro/desplegable_linea_abajo.png) repeat-x; overflow: hidden;">
+				<a href="javascript:;" class="boton" onclick="mostrarLogin();">¡Conéctate! ▼</a>
+			</div>
+		</div>
+
+	{/if}
+	</div>
+</div>
+
+<div id="__panelMensajes" style="position: fixed; top: 0; left: 0; width: 100%;">
+</div>
+
+<div id="interfaz">
+
+{$contenido}
+
+</div><!-- Fin #Interfaz -->
+
+<div id="pie">
+	<div style="float: right; padding: 0 0 0 10px;">Powered by <a href="http://www.devsolteam.com/" target="_blank">Devsol</a> &copy; 2009</div>
+	<div style="float: left; padding: 1px 1px 1px 10px;">
+    	<a href="http://{$host}/nuc/flogeek">Acerca de Flogeek</a>&nbsp;|&nbsp;
+		<a href="http://{$host}/nuc/porque">¿Por qué Flogeek?</a>&nbsp;|&nbsp;
+   		<a href="http://{$host}/nuc/bichos">Reporta Bugs / Errores</a>&nbsp;|&nbsp;
+   		<a href="http://{$host}/nuc/gracias">Agradecimientos</a>
+    </div>
+</div>
+
+</body>
+</html>

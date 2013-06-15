@@ -1,0 +1,138 @@
+<!-- {literal} -->
+<style type="text/css">
+	#subidas {
+		padding: 0 30px 40px 30px;
+		overflow: hidden;
+	}
+	.subida {
+		float: left;
+		border: solid 1px #e0e0e0;
+		padding: 10px;
+		margin: 0 15px 15px 0;
+	}
+	.subida-imcuadro {
+		text-align: center;
+		overflow: hidden
+	}
+	.subida-porc {
+		line-height: 35px;
+		text-align: center;
+		padding: 10px 0 0 0;
+		height: 40px;
+	}
+	.subida-porc-barra {
+		width: 200px;
+		height: 20px;
+		background: #e0e0e0;
+	}
+	.subida-porc-barra-prog {
+		background: #97C282;
+		height: 20px;
+	}
+	.subida img {
+		height: 200px;
+	}
+</style>
+<!-- {/literal} -->
+<script type="text/javascript">
+var url = eval('{$this->post->url}');
+var tipoSubida = 'ARCHIVO';
+var idSesion = '{$session_id}';
+var usuario  = '{$smarty.session.usuario->usuario}';
+var subidaContador = 0;
+var earchivo;
+/* {literal} */
+var tiposArchivo = {'.gif':true,'.jpg':true,'.png':true};
+function subirVideo(){
+	tipoSubida = 'URL';
+	$('#foto').val('').hide();
+	$('#video').show();
+}
+function subirFoto(){
+	tipoSubida = 'ARCHIVO';
+	$('#campo_url').val('');
+	$('#video').hide();
+	$('#foto').show();
+}
+$(function(){
+	earchivo = $('#archivo-foto');
+	earchivo.on('change', function() {
+		subirArchivo();
+	});
+});
+
+function subirArchivo(){
+	var efile = earchivo[0];
+	if(efile.files.length > 0) {
+		$.each(efile.files, function(k,file) {
+			if(file.type != 'image/jpeg' && file.type != 'image/png'
+			&& file.type != 'image/gif')
+				return false;
+			var subID = ++subidaContador;
+			var subida = crearSubida(subID, file.fileName);
+			var fd = new FormData();
+			var xhr = new XMLHttpRequest();
+			var fr = new FileReader();
+			$('#subidas').append(subida);
+			fr.onload = function(e) {
+				subida.imagen.src = e.target.result;
+			};
+			fr.readAsDataURL(file);
+			fd.append('archivo', file);
+			xhr.open('POST','pub/publicar?__resp=json');
+			xhr.onload = function() {
+				var r = eval('('+this.responseText+')');
+				if(r.status === 'OK') {
+					var url = 'http://flogeek.com/'+usuario+'/'+r.fotoId;
+					subida.porcentaje.html('<a href="'+url+'" target="_blank">Ver foto</a>');
+					subida.css('background','#efe');
+				} else if(r.status === 'IMAGEN_NO_VALIDA') {
+					subida.porcentaje.text('Imagen no válida');
+					subida.css('background','#fee');
+				}
+			};
+			if(xhr.upload) {
+				xhr.upload.onprogress = function(e) {
+					if(e.lengthComputable) {
+						subida.progreso.css('width',(Math.round((e.total > 0) ? (e.loaded * 100 / e.total) : 0))+'%');
+					}
+				};
+			} else {
+				subida.porcentaje.text('Cargando imagen...');
+			}
+			xhr.send(fd);
+		});
+	}
+	efile.value = '';
+}
+
+function crearSubida(id, name) {
+	var im = new Image();
+	var imc = $('<div>').addClass('subida-imcuadro').css('width','200px')
+		.css('height','200px')
+		.append(im);
+	var nam = $('<div>').addClass('subida-nombre');
+	var porcbin = $('<div>').addClass('subida-porc-barra-prog');
+	var porcb = $('<div>').addClass('subida-porc-barra')
+		.append(porcbin);
+	var porc = $('<div>').addClass('subida-porc')
+		.append(porcb);
+	var div = $('<div>').attr('id','subida-'+id).addClass('subida')
+		.append([imc,nam,porc]);
+	div.nombre = nam;
+	div.progreso = porcbin;
+	div.porcentaje = porc;
+	div.imagen = im;
+	return div; 
+}
+
+/* {/literal} */
+</script>
+
+<div style="text-align: center; padding: 30px;">
+	<div style="padding: 10px; font-size: 22px;">Elige la foto que quieres subir:</div>
+	<!--<form action="pub/publicar/?__resp=redir" method="post" id="frm" name="frm" enctype="multipart/form-data">-->
+	<input type="file" id="archivo-foto" multiple />
+</div>
+
+<div id="subidas"> </div>

@@ -1,0 +1,204 @@
+<link rel="stylesheet" type="text/css" href="http://flogeek.com/st/css/flog.css">
+<script type="text/javascript">
+	var id_foto = eval('{$this->foto->foto_id}');
+	var foto_url = 'http://flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg';
+	var id_usuario = eval('{$this->sesion->usuario->id}');
+	var usuario_lote = eval('{$this->sesion->usuario->lote}');
+	var usuario = '{$this->sesion->usuario->usuario}';
+	var editable = '{if $this->sesion->usuario->id == $this->usuario->usuario_id}true{else}false{/if}';
+</script>
+<script type="text/javascript" src="http://flogeek.com/st/js/flog.js"></script>
+<div id="trasfondo"> </div>
+<div id="edicion">
+	<div style="min-height: 200px;">
+		<div id="edicion-izq">
+			<canvas id="foto-edicion"> </canvas>	
+		</div>
+		<div class="edicion-der filtro">
+			<input type="button" class="boton-aplicar" value="Aplicar">
+			<a href="javascript:;" onclick="filtro_byn();">Blanco y Negro</a>
+		</div>
+		<div class="edicion-der filtro">
+			<input type="button" value="Aplicar" class="boton-aplicar">
+			<a href="javascript:;" onclick="filtro_sepia();">Sepia</a>
+		</div>
+		<div class="edicion-der filtro">
+			<input type="button" value="Aplicar" class="boton-aplicar">
+			<a href="javascript:;" onclick="filtro_ashuta();">Amaricho!</a>
+		</div>
+	</div>
+	<div style="padding: 0 0 0 10px; float: left; width: 190px;">
+		<input type="button" value="Cerrar" onclick="cancelar_ef();" style="width: 50px;">
+		<input type="button" value="Guardar" onclick="aplicar_ef();" style="width: 130px; font-weight: bold;">
+	</div>
+</div>
+
+<!-- COMENTARIO PLANTILLA -->
+<div id="comentario_plantilla" style="display: none;">
+	<div class="comentario" id="comentario_[%id]">
+		<!-- Parte de usuario -->
+		<div style="float: left;">
+			<img class="usuario-foto" src="http://flogeek.com/img/perfil/[%usuario_lote]/[%usuario_id]_t.jpg">
+		</div>
+		<div class="contenido">
+			<a href="{$comentario.usuario|lower}" style="text-decoration: none; font-weight: bold;">[%usuario]</a>
+			<span class="opciones">( <a href="javascript:descomentar([%id]);">Eliminar</a> )</span>
+			<p class="texto">[%comentario]</p>
+		</div>
+	</div>
+</div>
+<!-- /FIN COMENTARIO PLANTILLA -->
+	
+<!-- Lado Izquierdo: foto/comentario -->
+<div id="contenido" style="float: left; width: 730px;">
+
+	<div id="foto" style="text-align: center; padding-top: 5px;"><!-- Foto -->
+		{if $this->foto->foto_es_video}
+			{html_flash url=$this->foto->video_url ancho=690 alto=460}
+		{else}
+			<div id="la-foto" style="margin: 0 auto; width: {$this->foto->ancho}px; height: {$this->foto->alto}px; background: url(http://flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg);">
+				{foreach from=$this->notas item=nota}
+				<div class="nota-cuadro" style="position: relative; left: {$nota.x}px; top: {$nota.y}px; width: 30px; height: 30px;">
+				</div>
+				{/foreach}
+			</div>
+		{/if}
+	</div>
+	{if $this->foto->usuario_id == $this->sesion->usuario->id}
+	<div id="foto-herramientas">
+		<a href="http://flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg" id="boton-editar" type="application/octet-stream">Descargar</a>
+		<a href="javascript:;" onclick="filtrar();">Edición y Filtros</a>
+		<a href="javascript:;" onclick="add_nota();">Agregar Nota</a>
+	</div>
+	{/if}
+	<div id="muestra" class="fotoEdicion">
+		<h1 style="font-size: 16px;">
+			<span id="titulo">{$this->foto->foto_titulo|escape:'html'}</span>
+			{if $this->sesion->usuario && $this->sesion->usuario->id == $this->usuario->usuario_id}
+			<a href="javascript:;" onclick="editar();" id="boton-editar">Editar</a>
+			{/if}
+		</h1>
+		<div id="descripcion">
+			{$this->foto->foto_descripcion|replace:"<3":'&hearts;'|escape:'html'|nl2br}
+		</div>
+	</div>
+	
+	{if $this->sesion->usuario && $this->sesion->usuario->id == $this->usuario->usuario_id}
+	<div id="edicion-cont" style="display: none; padding: 20px;">
+		<form id="formEdicion">
+			<input type="hidden" name="id" id="idFoto" value="{$this->foto->foto_id}" />
+			<input type="text" name="titulo" id="campoTitulo" class="text" style="width: 400px; padding: 5px; margin-bottom: 10px;" /><br>
+			<textarea name="descripcion" id="campoDescripcion" class="text" style="width: 600px; height: 120px; padding: 5px;" /></textarea><br>
+			<input type="button" value="Guardar" onclick="guardar();">
+			<input type="button" value="Cancelar" onclick="cancelarEditar();">
+		</form>
+	</div>
+	{/if}
+
+	<!--comentarios-->
+	<div style="width: 680px; padding: 20px;" id="comentarios">
+	{foreach item=comentario from=$this->comentarios}
+		<div class="comentario" id="comentario_{$comentario.comentario_id}">
+			<!-- Parte de usuario -->
+			<div style="float: left;">
+				<img class="usuario-foto" src="http://flogeek.com/img/perfil/{$comentario.usuario_lote}/{$comentario.usuario_id}_t.jpg">
+			</div>
+			<div class="contenido">
+				<a href="{$comentario.usuario|lower}" style="text-decoration: none; font-weight: bold;">{$comentario.usuario}</a>
+				{if $this->sesion->usuario->id == $this->foto->usuario_id ||  $this->sesion->usuario->id == $comentario.usuario_id}
+				<span class="opciones">( <a href="javascript:descomentar({$comentario.comentario_id});">Eliminar</a> )</span>
+				{/if}
+				<p style="padding: 0; margin: 0;">{$comentario.comentario_comentario|replace:'<3':'&hearts;'|replace:'<':'&lt;'|nl2br}</p>
+			</div>
+		</div>
+	{/foreach}
+	</div>
+	
+	<div id="comentar"><!--postear-->
+		{if $this->sesion->usuario}
+		<h2>Deja tu comentario</h2>
+		<div id="comentario"> </div>
+		<div id="comentario-msg"> </div>
+		<form method="post" id="f_comentario">
+			<input type="hidden" name="id_foto" value="{$this->foto->foto_id}">
+			<div id="comentario-campos">
+				<textarea name="comentario" class="texto"></textarea>
+			</div>
+			<div id="comentario-botones">
+				<input type="button" value="Comentar" onclick="comentar();" />
+			</div>
+		</form>
+		{else}
+		<a href="#">Regístrate</a> or <a href="javascript:;" onclick="enfocarSesion();">Conéctate</a> para poder comentar esta foto.
+		{/if}
+	</div>
+</div>
+
+<!-- Lado derecho: información -->
+<div id="foto-info">
+	<!-- Información de la Foto -->
+	<div>
+		<div id="foto-info-usuario">
+			<img class="foto-usuario-foto" src="http://flogeek.com/img/perfil/{$this->usuario->lote}/{$this->usuario->id}_t.jpg">
+			Por <strong>{$this->usuario->usuario_usuario|escape:'html'}</strong><br>
+			<span class="foto-usuario-usuario">{$this->usuario->usuario_nombre|escape:'html'}</span>
+		</div>
+	
+		<div id="foto-info-fecha">
+			Subida el {$this->foto->fecha->getDia()} de {$this->foto->fecha->getMesNombre()|truncate:3:''} del {$this->foto->fecha->getAno()}
+		</div>
+		
+		<div id="foto-info-stats">
+			<div class="vistas">
+				{$this->foto->foto_visitas}
+			</div>
+			<div class="comentarios">
+				{$this->foto->foto_comentarios}
+			</div>
+		</div>
+		
+		<div id="foto-info-tags">
+			<strong style="display: block;">Etiquetas</strong>
+			<div id="etiquetas"> </div>
+			<script type="text/javascript">
+				{foreach from=$this->etiquetas item="etiqueta"}
+				agregarEtiqueta('{$etiqueta}');
+				{/foreach}
+			</script>
+			{if $this->sesion->usuario->id == $this->usuario->usuario_id}
+			<div>
+				<form id="formNuevaEtiqueta" onsubmit="crearEtiqueta();return false;">
+					<input type="hidden" name="id_foto" value="{$this->foto->foto_id}">
+					<input type="text" name="nombre" class="texto" id="etiquetaNombre" style="width: 150px; padding: 3px;" />
+					<input type="submit" value="" style="width:1px;height:1px;margin:0;padding:0;background: #fff;border:none;" />
+					<p style="padding:3px; margin:0; font-size: 10px; color: #aaa;">
+						Presiona "Enter" para agregar.
+					</p>
+				</form>
+			</div>
+			{/if}
+		</div>
+		
+		<div style="padding: 10px;">
+			<iframe src="http://www.facebook.com/plugins/like.php?app_id=138462759535745&amp;href=http%3A%2F%2F{$smarty.server.HTTP_HOST|escape:'url'}{$smarty.server.REQUEST_URI|escape:'url'}&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:60px;" allowTransparency="true"></iframe>
+		</div>
+		
+		<div style="padding: 10px; border-bottom: dotted 1px #c0c0c0; line-height: 16px; overflow: hidden;">
+			<strong style="display: block;">Más fotos</strong>
+			{foreach from=$this->fotos item="foto"}
+			<a href="{$this->usuario->usuario_usuario|lower}/{$foto.foto_id}">
+				<img src="http://flogeek.com/img/fotos/{$foto.foto_lote}/{$foto.foto_id}_t.jpg" style="margin: 0 7px 7px 0;">
+			</a>
+			{/foreach}
+			<div style="text-align: center;">
+				<a href="{$this->usuario->usuario_usuario}/fotos">Verlas Todas</a>
+			</div>
+		</div>
+		
+		<div style="text-align: center; padding: 10px;">
+			{if $this->sesion->usuario->id == $this->foto->usuario_id} 
+				<a href="javascript:;" onclick="eliminar('{$this->foto->foto_id}');">Eliminar esta foto</a>
+			{/if}
+		</div>
+	</div>
+</div>
