@@ -1,0 +1,6 @@
+drwx---r-x    4 cray5073 inetuser     4096 Apr  5  2011 .
+drwx---r-x    4 cray5073 inetuser     4096 Apr  5  2011 ..
+-rw----r--    1 cray5073 inetuser    63600 Apr  5  2011 Smarty.class.php
+-rw----r--    1 cray5073 inetuser    94363 Apr  5  2011 Smarty_Compiler.class.php
+drwx---r-x    2 cray5073 inetuser     4096 Apr  5  2011 internals
+drwx---r-x    2 cray5073 inetuser     4096 Apr  5  2011 plugins
