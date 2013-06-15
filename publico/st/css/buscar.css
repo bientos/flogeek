@@ -1,0 +1,72 @@
+h3 {
+	margin-top: 20px;
+	font-family: 'Strait', sans-serif;
+	font-weight: normal;
+	font-size: 1.5em;
+}
+
+#super-search-container{
+	height: 40px;
+}
+#super-search {
+	height: 40px;
+	padding: 8px 0 0 10px;
+	background: #f0f0f0;
+}
+#super-search input[type=text] {
+	width: 210px;
+	line-height: 30px;
+	padding: 0 5px 0 38px;
+	font-size: 16px;
+	height: 30px;
+	border: solid 1px #dfdfdf;
+	background: #fff url(../images/lupa.png) no-repeat 4px 4px;
+	font-family: 'Strait', sans-serif;
+}
+#super-search input[type=text]:active {
+	outline: none ;
+}
+#fotos {
+	margin: 10px 0 0 0;
+	padding: 0 0 0 40px;
+}
+#fotos .foto {
+	width: 220px;
+	position: absolute;
+	margin-left: 0;
+}
+#fotos .foto-foto {
+	float: left;
+}
+#fotos .foto-titulo {
+	font-weight: bold;
+	line-height: 1em;
+}
+
+#super-search input[type=submit] {
+	font-weight: bold;
+	padding: 0 !important;
+	margin: 0 !important;
+	width: 80px;
+	line-height: 32px;
+	border: solid 1px #c0c0c0;
+	background: #c0c0c0;
+	height: 32px;
+	font-family: 'Strait', sans-serif;
+	font-size: 1.10em;
+	font-weight: normal;
+	color: #666;
+	border-radius: 4px;
+	background: -moz-linear-gradient(-90deg,#f0f0f0,#dfdfdf);
+	background: -webkit-linear-gradient(-90deg,#f0f0f0,#dfdfdf);
+}
+
+#super-search input[type=submit]:active {
+	background: -moz-linear-gradient(-90deg,#dfdfdf,#f0f0f0);
+	background: -webkit-linear-gradient(-90deg,#dfdfdf,#f0f0f0);
+}
+
+#super-search input[type=submit]:hover {
+	color: #000;
+	border-color: #666;
+}

@@ -1,0 +1,44 @@
+body {
+	margin-bottom: 150px !important;
+}
+#pie {
+	position: fixed !important;
+	bottom: 0; width: 100%;
+	background: rgba(255,255,255,.7);
+	line-height: 25px;
+	padding: 3px 0 0 0;
+	-moz-filter: blur(10px);
+}
+#interfaz {
+	background: inherit !important;
+	padding: 0 !important;
+	width: auto;
+}
+h1 { margin: 0; }
+div.fotito {
+	position: absolute;
+	padding: 10px 0 0 0;
+	background: #fff;
+	box-shadow: 0 1px 3px #b0b0b0;
+}
+.fotito a.foto {
+	display: block;
+	overflow: hidden;
+}
+.fotito a.foto img { width: 100%; }
+.fotito-usuario {
+	text-align: left;
+	background: #f3f3f3;
+	padding: 5px 0 5px 5px;
+	margin: 5px 0 0 0;
+}
+.fotito-usuario a {
+	text-decoration: none;
+	color: #999;
+	display: inline-block;
+	line-height: 20px;
+	font-size: 12px;
+}
+.fotito-usuario a:hover {
+	color: #090;
+}
