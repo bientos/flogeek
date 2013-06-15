@@ -1,0 +1,330 @@
+/* ThinkPro */
+
+body
+{
+	background: #f3f3f3;
+	color: #000;
+	font-family:Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	margin: 0;
+}
+
+form, div, td, h1, h2, h3, img, table, span, p, input, ul, li, a
+{
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-family: "Century Gothic";
+}
+
+h2 {
+	font-size: 14px;
+	margin: 0;
+	line-height: 30px;
+	color: #2c2c2c;
+}
+
+h3 {
+	line-height: 30px;
+	text-align: left;
+	padding-left: 10px;
+	font-size: 14px;
+	color: #079;
+	font-weight: bold;
+	border-bottom: solid 1px #e0e0e0;
+	font-weight: bold;
+	margin: 0 1px;
+	font-family: "Century Gothic";
+}
+
+img
+{
+	border: 0;	
+}
+
+a
+{
+	color: #669900;	
+}
+
+a:hover
+{
+	color: #99cc33;	
+}
+
+#titulo a.Logo
+{
+	float: left;
+	width: 280px;
+	height: 50px;
+	display: block;
+	background: url(tituloFlog_logo.png) blue center center;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding: 10px;
+	border: solid 5px #d0c0d0;
+}
+
+#interfaz
+{
+	width: 950px;
+	border-collapse: collapse;
+	margin: 0 auto 0 auto;
+	font-size: 13px;
+	background: #fff;
+	overflow: hidden;
+	padding-top: 15px;
+	border-radius: 5px;
+}
+
+#cabeza {
+	width: 950px;
+	height: 49px;
+	/*background: #97c543;*/
+	margin: 0 auto 15px auto;
+}
+
+#cabeza a.logo {
+	width: 150px;
+	height: 60px;
+	display: block;
+	overflow: hidden;
+	background: url(cabeza_logo.png) no-repeat center center;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border: none;
+}
+
+#cabeza #busqueda
+{
+	float: right;
+	padding: 40px 10px 10px 0;
+}
+
+#cabeza #busqueda input
+{
+	padding: 3px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: none;
+}
+
+#barra_superior
+{
+	background: #fff;
+	height: 45px;
+	margin: 0 auto 0 auto;
+	line-height: 30px;
+	width: 950px;
+	text-decoration: none;
+	overflow: hidden;
+	/* NO-IE */
+	border-top-left-radius: 7px;
+	-moz-border-radius-topleft: 7px;
+	-webkit-border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	-moz-border-radius-topright: 7px;
+	-webkit-border-top-right-radius: 7px;
+}
+
+#interfaz
+{
+	/* NO-IE */
+	border-bottom-left-radius: 7px;
+	-moz-border-radius-bottomleft: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	border-bottom-right-radius: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+}
+
+#pie
+{
+	width: 990px;
+	text-align: center;
+	margin: 0 auto 0 auto;
+	padding: 20px 0 20px 0;
+	line-height: 20px;
+	padding: 20px 10px 10px 10px;
+}
+
+#pie a
+{
+	color: #3a4725;
+}
+
+div#etiquetas div.etiqueta
+{
+	padding: 0 14px 0 0;
+}
+
+div#etiquetas div.etiqueta a
+{
+	line-height: 22px;
+	margin-left: 3px;
+	display: block;
+	float: left;
+}
+
+div#etiquetas div.etiqueta a.eliminado
+{
+	display: none;
+	padding: 0 2px;
+}
+
+div#etiquetas div.etiqueta a.eliminado:hover
+{
+	background: #690;
+	color: #fff;
+	-moz-border-radius: 3px;
+}
+
+div#etiquetas div.etiqueta:hover
+{
+	background: #cfe2b8;
+	padding-right: 0px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px;
+}
+
+div#etiquetas div.etiqueta:hover a
+{
+	color: #690;
+	display: inline;
+}
+
+input.TextBox,
+textarea.TextBox
+{
+	border: solid #99cc33 1px;
+	font-family: "Trebuchet MS", Verdana;
+	font-size: 12px;
+	padding: 5px;
+	background: #fff repeat-x top;
+	border-top: solid 1px #c0c0c0;
+	border-left: solid 1px #c0c0c0;
+	border-right: solid 1px #888;
+	border-bottom: solid 1px #888;
+}
+
+textarea.TextBox
+{
+	line-height: 14px;
+}
+
+/* Sobre la edición de la Descripción y Título */
+div.fotoEdicion h1
+{
+	color: #007799;
+}
+
+/* Todo el asunto de los comentarios */
+div.comentario
+{
+	padding: 10px;
+}
+div.comentario span.opciones
+{
+	display: none;
+}
+
+div.comentario:hover
+{
+	background: #f4f4f4;
+}
+
+div.comentario:hover span.opciones
+{
+	display: inline;
+}
+
+/* Estilos de la interfaz Fexem */
+a.fexem_ui_boton
+{
+	display: inline-block;
+	padding: 2px 8px;
+	border: solid 1px #d7e6b9;
+	text-decoration: none;
+	line-height: 22px;
+	color: #3a491d;
+	font-size: 13px;
+	margin: 0 2px;
+	background: #fff;
+	/* No IE */
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+}
+
+a.fexem_ui_boton img
+{
+	float: left;
+	margin: 2px 5px 0 0;
+}
+
+a.fexem_ui_boton:hover
+{
+	border: solid 1px #a6c761;
+	background: #cfe2b8;
+	color: #fff;
+}
+
+div.desplegable {
+	z-index: 10000;
+}
+
+div.desplegable div.contenido
+{
+	background: url(desplegable_linea_abajo.png) #fff;
+	border: #c3c3c3 solid 2px;
+	border-bottom: none;
+	border-top: none;
+}
+
+div.desplegable a.boton
+{
+	background: #b0b0b0;
+	font-size: 13px;
+	border-top: none;
+	text-decoration: none;
+	padding: 7px 10px;
+	color: #fff;
+	display: block;
+	float: left;
+	border-radius: 0 0 3px 3px;
+}
+
+div.desplegable a.boton:hover
+{
+	background: #a3a3a3;
+	text-shadow: 0 1px 0 #333;
+}
+
+/* Estilos de cuadros de mensaje */
+div.mensaje_error
+{
+	padding: 10px;
+	background: #ffe6e6;
+	text-align: center;
+	font-size: 15px;
+}
+div.mensaje_exito
+{
+	padding: 10px;
+	background: #d5ffd5;
+	text-align: center;
+	font-size: 15px;
+}
+div.mensaje_info
+{
+	padding: 10px;
+	background: #e8eff7;
+	text-align: center;
+	font-size: 15px;
+}
+
+
