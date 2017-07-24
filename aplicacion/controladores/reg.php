@@ -21,7 +21,7 @@ class Reg_Controlador extends Fexem_Controlador
 				'status'     => 1
 			));
 			// Generar el correo
-			$url = "http://flogeek.com/reg/confires/?t1={$ll1}&t2={$ll2}&uid={$u['usuario_id']}"; 
+			$url = "https://flogeek.com/reg/confires/?t1={$ll1}&t2={$ll2}&uid={$u['usuario_id']}"; 
 			$cuerpo = "
 				Has solicitado reiniciar la contraseña de Flogeek.<br>
 				Sigue el link para continuar.<br><br>

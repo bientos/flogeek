@@ -89,10 +89,10 @@ class Pub_Controlador extends Fexem_Controlador
 		
 		// Si la imagen no es válida, es posible
 		// tomar un video desde URL.
-		elseif( preg_match('@(http://)?(www[.])?youtube[.]com/watch[?]v=([a-z0-9_-]+)@i', $this->post->url, $coin) )
+		elseif( preg_match('@(https?://)?(www[.])?youtube[.]com/watch[?]v=([a-z0-9_-]+)@i', $this->post->url, $coin) )
 		{
 			// Tomar la imagen default del video
-			$url = 'http://i3.ytimg.com/vi/'.$coin[3].'/default.jpg';
+			$url = 'https://i3.ytimg.com/vi/'.$coin[3].'/default.jpg';
 			$curl = curl_init($url);
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 			$contenido = curl_exec($curl);
@@ -158,9 +158,9 @@ class Pub_Controlador extends Fexem_Controlador
 		}
 		if( $this->get->__resp == 'redir' )	{
 			if( $this->json->status == 'OK' )
-				header('Location: http://flogeek.com/'.strtolower($this->sesion->usuario->usuario).'/'.$id_foto);
+				header('Location: https://flogeek.com/'.strtolower($this->sesion->usuario->usuario).'/'.$id_foto);
 			else
-				header('Location: http://flogeek.com/pub/?err='+$this->json->status);
+				header('Location: https://flogeek.com/pub/?err='+$this->json->status);
 			$db->close();
 			exit;
 		}

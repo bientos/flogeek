@@ -75,7 +75,7 @@ class Flo_Controlador extends Fexem_Controlador
 				}
 					
 				if( $this->foto->foto_video_tipo == 0 ) {
-					$this->foto->video_url = 'http://youtube.com/v/'.
+					$this->foto->video_url = 'https://youtube.com/v/'.
 						$this->foto->foto_video_id;
 				}
 				
@@ -83,7 +83,7 @@ class Flo_Controlador extends Fexem_Controlador
 				$this -> vista -> llenar ('flog.html', array(
 					'Titulo' => isset($tituloHTML) ? $tituloHTML : null,
 					'Descripcion' => isset($descripcionHTML) ? $descripcionHTML : null,
-					'imagenOG' => 'http://i1.flogeek.com/fotos/' . $this->foto->foto_lote . '/' . $this->foto->foto_id . '_s.jpg'
+					'imagenOG' => 'https://i1.flogeek.com/fotos/' . $this->foto->foto_lote . '/' . $this->foto->foto_id . '_s.jpg'
 				));
 			} else {
 				$this->vista->imprimir('<div style="padding:50px; font-size: 30px; text-align: center;">El usuario no ha agregado su primera foto.'

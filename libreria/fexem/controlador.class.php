@@ -90,7 +90,7 @@ class Fexem_Controlador
 	 */
 	protected function irA($url)
 	{
-		header("Location: http://{$_SERVER['HTTP_HOST']}/{$url}");
+		header("Location: https://{$_SERVER['HTTP_HOST']}/{$url}");
 		exit;
 	}
 }
