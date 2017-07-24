@@ -83,7 +83,7 @@ function subirArchivo(){
 			xhr.onload = function() {
 				var r = eval('('+this.responseText+')');
 				if(r.status === 'OK') {
-					var url = 'http://flogeek.com/'+usuario+'/'+r.fotoId;
+					var url = 'https://flogeek.com/'+usuario+'/'+r.fotoId;
 					subida.porcentaje.html('<a href="'+url+'" target="_blank">Ver foto</a>');
 					subida.css('background','#efe');
 				} else if(r.status === 'IMAGEN_NO_VALIDA') {

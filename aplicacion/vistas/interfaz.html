@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 {assign var=iserver value="i1.flogeek.com"}
 {assign var=host value=$smarty.server.HTTP_HOST}
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="//www.w3.org/1999/xhtml">
 <head>
-	<base href="http://{$smarty.server.HTTP_HOST}/">
+	<base href="//{$smarty.server.HTTP_HOST}/">
 	<title>{if $Titulo}{$Titulo}{else}Flogeek - Piensa simple...{/if}</title>
 	<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
 	<meta name="keywords" content="flogeek,fotoblog,flog,geek,foto,fotos,think,simple,video,videos" />
 	<meta name="description" content="{if $Descripcion}{$Descripcion|regex_replace:'/\n/im':' '|truncate:200}{else}Un fotoblog mejorado para ti que eres geek, registrate para subir tu primer foto.{/if}" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	{if $imagenOG}<meta property="og:image" content="{$imagenOG}" />{/if}
-	<link rel="shortcut icon" href="http://{$smarty.server.HTTP_HOST}/favicon.ico" />
-	<link rel="stylesheet" type="text/css" href="http://{$smarty.server.HTTP_HOST}/temas/thinkpro/estilo.css" id="tema" />
-	<link href='http://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
-	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/st/js/jquery.js"></script>
-	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/st/js/jquery-ui-1.9.2.custom.min.js"></script>
-	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/fexem.js"></script>
-	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/menus.js"></script>
-	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/jquery.scrollTo.js"></script>
-	<script type="text/javascript" src="http://{$smarty.server.HTTP_HOST}/scripts/js/jquery.mensaje.js"></script>
-	<link href='http://fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
+	<link rel="shortcut icon" href="//{$smarty.server.HTTP_HOST}/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="//{$smarty.server.HTTP_HOST}/temas/thinkpro/estilo.css" id="tema" />
+	<link href='//fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="//{$smarty.server.HTTP_HOST}/st/js/jquery.js"></script>
+	<script type="text/javascript" src="//{$smarty.server.HTTP_HOST}/st/js/jquery-ui-1.9.2.custom.min.js"></script>
+	<script type="text/javascript" src="//{$smarty.server.HTTP_HOST}/scripts/js/fexem.js"></script>
+	<script type="text/javascript" src="//{$smarty.server.HTTP_HOST}/scripts/js/menus.js"></script>
+	<script type="text/javascript" src="//{$smarty.server.HTTP_HOST}/scripts/js/jquery.scrollTo.js"></script>
+	<script type="text/javascript" src="//{$smarty.server.HTTP_HOST}/scripts/js/jquery.mensaje.js"></script>
+	<link href='//fonts.googleapis.com/css?family=Strait' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="cabeza">
@@ -28,7 +28,7 @@
 			<input type="search" placeholder="Encuentra Algo..." name="b" style="border-radius: 1px; border-top: solid 1px #c0c0c0; border-left: solid 1px #c0c0c0; border-bottom: #999 solid 1px; border-right: #999 solid 1px;" />
 		</form>
 	</div>
-	<a href="http://{$smarty.server.HTTP_HOST}/" class="logo" style="float: left;"></a>
+	<a href="//{$smarty.server.HTTP_HOST}/" class="logo" style="float: left;"></a>
 	
 	<div style="height: 28px; margin-left: 200px; text-align: right; float: left; padding: 5px; width: 550px; padding-top: 0px; position: absolute;">
 	{if $this->sesion->usuario}
@@ -120,12 +120,12 @@
 </div><!-- Fin #Interfaz -->
 
 <div id="pie">
-	<div style="float: right; padding: 0 0 0 10px;">Powered by <a href="http://www.devsolteam.com/" target="_blank">Devsol</a> &copy; 2009</div>
+	<div style="float: right; padding: 0 0 0 10px;">Powered by <a href="//www.devsolteam.com/" target="_blank">Devsol</a> &copy; 2009</div>
 	<div style="float: left; padding: 1px 1px 1px 10px;">
-    	<a href="http://{$host}/nuc/flogeek">Acerca de Flogeek</a>&nbsp;|&nbsp;
-		<a href="http://{$host}/nuc/porque">¿Por qué Flogeek?</a>&nbsp;|&nbsp;
-   		<a href="http://{$host}/nuc/bichos">Reporta Bugs / Errores</a>&nbsp;|&nbsp;
-   		<a href="http://{$host}/nuc/gracias">Agradecimientos</a>
+    	<a href="//{$host}/nuc/flogeek">Acerca de Flogeek</a>&nbsp;|&nbsp;
+		<a href="//{$host}/nuc/porque">¿Por qué Flogeek?</a>&nbsp;|&nbsp;
+   		<a href="//{$host}/nuc/bichos">Reporta Bugs / Errores</a>&nbsp;|&nbsp;
+   		<a href="//{$host}/nuc/gracias">Agradecimientos</a>
     </div>
 </div>
 

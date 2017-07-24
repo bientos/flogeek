@@ -1,13 +1,13 @@
-<link rel="stylesheet" type="text/css" href="http://flogeek.com/st/css/flog.css">
+<link rel="stylesheet" type="text/css" href="//flogeek.com/st/css/flog.css">
 <script type="text/javascript">
 	var id_foto = eval('{$this->foto->foto_id}');
-	var foto_url = 'http://flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg';
+	var foto_url = '//flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg';
 	var id_usuario = eval('{$this->sesion->usuario->id}');
 	var usuario_lote = eval('{$this->sesion->usuario->lote}');
 	var usuario = '{$this->sesion->usuario->usuario}';
 	var editable = '{if $this->sesion->usuario->id == $this->usuario->usuario_id}true{else}false{/if}';
 </script>
-<script type="text/javascript" src="http://flogeek.com/st/js/flog.js"></script>
+<script type="text/javascript" src="//flogeek.com/st/js/flog.js"></script>
 <div id="trasfondo"> </div>
 <div id="edicion">
 	<div style="min-height: 200px;">
@@ -38,7 +38,7 @@
 	<div class="comentario" id="comentario_[%id]">
 		<!-- Parte de usuario -->
 		<div style="float: left;">
-			<img class="usuario-foto" src="http://flogeek.com/img/perfil/[%usuario_lote]/[%usuario_id]_t.jpg">
+			<img class="usuario-foto" src="//flogeek.com/img/perfil/[%usuario_lote]/[%usuario_id]_t.jpg">
 		</div>
 		<div class="contenido">
 			<a href="{$comentario.usuario|lower}" style="text-decoration: none; font-weight: bold;">[%usuario]</a>
@@ -56,7 +56,7 @@
 		{if $this->foto->foto_es_video}
 			{html_flash url=$this->foto->video_url ancho=690 alto=460}
 		{else}
-			<div id="la-foto" style="margin: 0 auto; width: {$this->foto->ancho}px; height: {$this->foto->alto}px; background: url(http://flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg);">
+			<div id="la-foto" style="margin: 0 auto; width: {$this->foto->ancho}px; height: {$this->foto->alto}px; background: url(//flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg);">
 				{foreach from=$this->notas item=nota}
 				<div class="nota-cuadro" style="position: relative; left: {$nota.x}px; top: {$nota.y}px; width: 30px; height: 30px;">
 				</div>
@@ -66,7 +66,7 @@
 	</div>
 	{if $this->foto->usuario_id == $this->sesion->usuario->id}
 	<div id="foto-herramientas">
-		<a href="http://flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg" id="boton-editar" type="application/octet-stream">Descargar</a>
+		<a href="//flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg" id="boton-editar" type="application/octet-stream">Descargar</a>
 		<a href="javascript:;" onclick="filtrar();">Edición y Filtros</a>
 		<a href="javascript:;" onclick="add_nota();">Agregar Nota</a>
 	</div>
@@ -101,7 +101,7 @@
 		<div class="comentario" id="comentario_{$comentario.comentario_id}">
 			<!-- Parte de usuario -->
 			<div style="float: left;">
-				<img class="usuario-foto" src="http://flogeek.com/img/perfil/{$comentario.usuario_lote}/{$comentario.usuario_id}_t.jpg">
+				<img class="usuario-foto" src="//flogeek.com/img/perfil/{$comentario.usuario_lote}/{$comentario.usuario_id}_t.jpg">
 			</div>
 			<div class="contenido">
 				<a href="{$comentario.usuario|lower}" style="text-decoration: none; font-weight: bold;">{$comentario.usuario}</a>
@@ -139,7 +139,7 @@
 	<!-- Información de la Foto -->
 	<div>
 		<div id="foto-info-usuario">
-			<img class="foto-usuario-foto" src="http://flogeek.com/img/perfil/{$this->usuario->lote}/{$this->usuario->id}_t.jpg">
+			<img class="foto-usuario-foto" src="//flogeek.com/img/perfil/{$this->usuario->lote}/{$this->usuario->id}_t.jpg">
 			Por <strong>{$this->usuario->usuario_usuario|escape:'html'}</strong><br>
 			<span class="foto-usuario-usuario">{$this->usuario->usuario_nombre|escape:'html'}</span>
 		</div>
@@ -180,14 +180,14 @@
 		</div>
 		
 		<div style="padding: 10px;">
-			<iframe src="http://www.facebook.com/plugins/like.php?app_id=138462759535745&amp;href=http%3A%2F%2F{$smarty.server.HTTP_HOST|escape:'url'}{$smarty.server.REQUEST_URI|escape:'url'}&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:60px;" allowTransparency="true"></iframe>
+			<iframe src="//www.facebook.com/plugins/like.php?app_id=138462759535745&amp;href=http%3A%2F%2F{$smarty.server.HTTP_HOST|escape:'url'}{$smarty.server.REQUEST_URI|escape:'url'}&amp;send=false&amp;layout=box_count&amp;width=450&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=90" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:60px;" allowTransparency="true"></iframe>
 		</div>
 		
 		<div style="padding: 10px; border-bottom: dotted 1px #c0c0c0; line-height: 16px; overflow: hidden;">
 			<strong style="display: block;">Más fotos</strong>
 			{foreach from=$this->fotos item="foto"}
 			<a href="{$this->usuario->usuario_usuario|lower}/{$foto.foto_id}">
-				<img src="http://flogeek.com/img/fotos/{$foto.foto_lote}/{$foto.foto_id}_t.jpg" style="margin: 0 7px 7px 0;">
+				<img src="//flogeek.com/img/fotos/{$foto.foto_lote}/{$foto.foto_id}_t.jpg" style="margin: 0 7px 7px 0;">
 			</a>
 			{/foreach}
 			<div style="text-align: center;">
