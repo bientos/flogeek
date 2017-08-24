@@ -8,4 +8,4 @@ Today, June 15th, 2013, i decied to add it ot github.
 
 This is not a ready for use software, but i hope i can be useful for education.
 
-Gamaliel Espinoza M.
+より暗いミラー
