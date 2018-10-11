@@ -65,14 +65,14 @@
 
 #foto-info-fecha {
 	padding: 10px;
-	border: dotted 1px #c0c0c0;
+	border: dotted 1px #555;
 	border-left: none;
 	border-right: none;
 }
 
 #foto-info-stats {
 	padding: 10px;
-	border-bottom: dotted 1px #c0c0c0;
+	border-bottom: dotted 1px #555;
 	line-height: 16px;
 	overflow: hidden;
 }
@@ -93,7 +93,7 @@
 }
 #foto-info-tags {
 	padding: 10px;
-	border-bottom: dotted 1px #c0c0c0;
+	border-bottom: dotted 1px #555;
 	line-height: 16px;
 	overflow: hidden;
 }
@@ -137,7 +137,7 @@
 #edicion {
 	overflow: hidden;
 	display: none;
-	background: #fff;
+	background: #555;
 	position: absolute;
 	width: 400px;
 	width: 1000px;
@@ -145,7 +145,7 @@
 	margin-left: -5px;
 }
 #edicion-izq {
-	background: #e9e9e9;
+	background: #222;
 	float: left;
 	width: 700px;
 	text-align: center;

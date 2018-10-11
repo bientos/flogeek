@@ -66,6 +66,7 @@ function comentar() {
 					.replace(/\[\%usuario\]/g, usuario)
 					.replace(/\[\%usuario_lote]/g, usuario_lote)
 					.replace(/\[\%usuario_id]/g, id_usuario)
+					.replace(/\[\%comentario_fecha]/g, r.comentario.fecha.toString())
 					.replace(/\[\%comentario]/g, r.comentario.texto
 						.replace(/</,'&lt;')
 						.replace(/>/,'&gt;')

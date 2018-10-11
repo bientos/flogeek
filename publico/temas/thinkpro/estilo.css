@@ -2,9 +2,9 @@
 
 body
 {
-	background: #f3f3f3;
-	color: #000;
-	font-family:Geneva, Arial, Helvetica, sans-serif;
+	background: #333;
+	color: #ddd;
+	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	margin: 0;
 }
@@ -16,14 +16,14 @@ form, div, td, h1, h2, h3, img, table, span, p, input, ul, li, a
 }
 
 h1 {
-	font-family: "Century Gothic";
+	
 }
 
 h2 {
 	font-size: 14px;
 	margin: 0;
 	line-height: 30px;
-	color: #2c2c2c;
+	color: #ddd;
 }
 
 h3 {
@@ -36,7 +36,6 @@ h3 {
 	border-bottom: solid 1px #e0e0e0;
 	font-weight: bold;
 	margin: 0 1px;
-	font-family: "Century Gothic";
 }
 
 img
@@ -46,12 +45,12 @@ img
 
 a
 {
-	color: #669900;	
+	color: #bbff33;	
 }
 
 a:hover
 {
-	color: #99cc33;	
+	color: #bbff33;	
 }
 
 #titulo a.Logo
@@ -73,14 +72,13 @@ a:hover
 	border-collapse: collapse;
 	margin: 0 auto 0 auto;
 	font-size: 13px;
-	background: #fff;
+	background: #383838;
 	overflow: hidden;
 	padding-top: 15px;
-	border-radius: 5px;
 }
 
 #cabeza {
-	width: 950px;
+	width: 100%;
 	height: 49px;
 	/*background: #97c543;*/
 	margin: 0 auto 15px auto;
@@ -152,7 +150,7 @@ a:hover
 
 #pie a
 {
-	color: #3a4725;
+	color: #bbff33;
 }
 
 div#etiquetas div.etiqueta
@@ -200,17 +198,21 @@ div#etiquetas div.etiqueta:hover a
 input.TextBox,
 textarea.TextBox
 {
-	border: solid #99cc33 1px;
+	border: solid #333 1px;
 	font-family: "Trebuchet MS", Verdana;
 	font-size: 12px;
 	padding: 5px;
-	background: #fff repeat-x top;
+	background: #444 repeat-x top;
+	color: #ddd;
 	border-top: solid 1px #c0c0c0;
 	border-left: solid 1px #c0c0c0;
 	border-right: solid 1px #888;
 	border-bottom: solid 1px #888;
 }
-
+textarea {
+	background-color: #555;
+	color: #fff;
+}
 textarea.TextBox
 {
 	line-height: 14px;
@@ -219,13 +221,19 @@ textarea.TextBox
 /* Sobre la edición de la Descripción y Título */
 div.fotoEdicion h1
 {
-	color: #007799;
+	color: #fff;
+}
+div.fotoEdicion > .descripcion {
+	font-size: 16px;
 }
 
 /* Todo el asunto de los comentarios */
 div.comentario
 {
 	padding: 10px;
+}
+div.comentario .contenido {
+	font-size: 16px;
 }
 div.comentario span.opciones
 {
@@ -234,7 +242,7 @@ div.comentario span.opciones
 
 div.comentario:hover
 {
-	background: #f4f4f4;
+	background: #333;
 }
 
 div.comentario:hover span.opciones
@@ -287,12 +295,12 @@ div.desplegable div.contenido
 
 div.desplegable a.boton
 {
-	background: #b0b0b0;
+	background: #555555;
 	font-size: 13px;
 	border-top: none;
 	text-decoration: none;
 	padding: 7px 10px;
-	color: #fff;
+	color: #ddd;
 	display: block;
 	float: left;
 	border-radius: 0 0 3px 3px;
@@ -300,8 +308,7 @@ div.desplegable a.boton
 
 div.desplegable a.boton:hover
 {
-	background: #a3a3a3;
-	text-shadow: 0 1px 0 #333;
+	background: #585858;
 }
 
 /* Estilos de cuadros de mensaje */

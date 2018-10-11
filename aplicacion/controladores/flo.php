@@ -147,9 +147,15 @@ class Flo_Controlador extends Fexem_Controlador
 			// Enviamos un correo al dueño de la foto
 			mail($this->usuario->usuario_email,
 				"Comentaron tu foto",
-				"<strong>{$this->sesion->usuario->usuario_usuario}</strong> ".
-				"comentó tu publicación <strong>{$this->foto->foto_titulo}</strong>:<br><br>".
-				str_replace(array('<','>'),array('&lt;','&gt;'), $this->post->comentario),
+				"<strong>{$this->sesion->usuario->usuario}</strong> ".
+				"comentó tu publicación <strong>{$this->foto->foto_titulo}</strong>:<br><br><blockquote>".
+				str_replace(array('<','>'),array('&lt;','&gt;'), $this->post->comentario) . '</blockquote>'
+				.'<h5>Enlace a la publicación</h5>'
+				."<a href=\"https://flogeek.com/{$this->usuario->usuario_usuario}/{$this->foto->foto_id}\">"
+				."https://flogeek.com/{$this->usuario->usuario_usuario}/{$this->foto->foto_id}"
+				."</a><hr />"
+				."<emphasis>Este correo fue generado a través de flogeek.com"
+				." con la debida autorización del usuario al momento de registrarse</emphasis>",
 				"From: Flogeek<notif@flogeek.com>\r\n".
 				"Content-Type: text/html; charset=utf-8\r\n".
 				"MIME-Version: 1.0\r\n",

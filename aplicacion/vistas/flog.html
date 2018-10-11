@@ -68,7 +68,7 @@
 	<div id="foto-herramientas">
 		<a href="//flogeek.com/img/fotos/{$this->foto->foto_lote}/{$this->foto->foto_id}_n.jpg" id="boton-editar" type="application/octet-stream">Descargar</a>
 		<a href="javascript:;" onclick="filtrar();">Edición y Filtros</a>
-		<a href="javascript:;" onclick="add_nota();">Agregar Nota</a>
+		<!--<a href="javascript:;" onclick="add_nota();">Agregar Nota</a>-->
 	</div>
 	{/if}
 	<div id="muestra" class="fotoEdicion">
@@ -109,7 +109,11 @@
 				<span class="opciones">( <a href="javascript:descomentar({$comentario.comentario_id});">Eliminar</a> )</span>
 				{/if}
 				<p style="padding: 0; margin: 0;">{$comentario.comentario_comentario|replace:'<3':'&hearts;'|replace:'<':'&lt;'|nl2br}</p>
+				<div>
+					<small style="color: #777;">{$comentario.comentario_fecha}</small>
+				</div>
 			</div>
+			
 		</div>
 	{/foreach}
 	</div>
@@ -170,7 +174,7 @@
 				<form id="formNuevaEtiqueta" onsubmit="crearEtiqueta();return false;">
 					<input type="hidden" name="id_foto" value="{$this->foto->foto_id}">
 					<input type="text" name="nombre" class="texto" id="etiquetaNombre" style="width: 150px; padding: 3px;" />
-					<input type="submit" value="" style="width:1px;height:1px;margin:0;padding:0;background: #fff;border:none;" />
+					<input type="submit" value="" style="width:1px;height:1px;margin:0;padding:0;border:none;" />
 					<p style="padding:3px; margin:0; font-size: 10px; color: #aaa;">
 						Presiona "Enter" para agregar.
 					</p>
