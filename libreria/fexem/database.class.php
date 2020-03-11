@@ -8,7 +8,7 @@ class Fexem_Database
 	private static $pass;
 	private static $nombre;
 	
-	public function Fexem_Database($abrir = true) {
+	public function __construct($abrir = true) {
 		// Crear la conexi�n en caso de no existir
 		if( $abrir )
 			$this->abrir();
@@ -21,7 +21,7 @@ class Fexem_Database
 		self::$pass = $pass;
 	}
 	
-	static function &crear() {
+	static function crear() {
 		return new Fexem_Database();
 	}
 	
@@ -83,7 +83,7 @@ class Fexem_Database
 	}
 
 	public function cerrar() {
-		@mysqli_close( self::$conn );	
+		mysqli_close( self::$conn );	
 	}
 	
 	public function unRegistro($query)
@@ -101,7 +101,7 @@ class Fexem_Database
 	 * Crea una consulta de un solo registro
 	 * a partir de una tabla específica.
 	 */
-	function &un($tablas, $valid = null) {
+	function un($tablas, $valid = null) {
 		$c = $this->de($tablas);
 		if( $valid != null )
 			$c->si('id=?',$valid);
@@ -140,7 +140,7 @@ class Fexem_Database
 	 * @param $tablas
 	 * @param $campos
 	 */
-	function &seleccionar($tablas,$campos = null)
+	function seleccionar($tablas,$campos = null)
 	{
 		$c = $this->crearConsulta();
 		$c->de($tablas);
@@ -171,7 +171,7 @@ class Fexem_Database
 		return null;
 	}
 	
-	function &crearConsulta()
+	function crearConsulta()
 	{
 		$consulta = new Fexem_Consulta();
 		$consulta->aplicarDb($this);
@@ -181,7 +181,7 @@ class Fexem_Database
 	 * Crea una consulta con respecto a la base
 	 * de datos actual.
 	 */
-	function &consulta() {
+	function consulta() {
 		$c = $this->crearConsulta();
 		return $c;
 	}
@@ -192,7 +192,7 @@ class Fexem_Database
 	 * 
 	 * @param $tablas Arreglo o nombre de tabla.
 	 */
-	function &de($tablas) {
+	function de($tablas) {
 		$c = $this->consulta();
 		$c->de($tablas);
 		return $c;

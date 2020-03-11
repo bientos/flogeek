@@ -2,7 +2,7 @@
 
 class Fexem_Post extends Fexem_Modelo
 {
-	function Fexem_Post()
+	function __construct()
 	{
 		parent::Fexem_Modelo();
 		// Filtrar los valores

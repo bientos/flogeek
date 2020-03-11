@@ -12,7 +12,7 @@ class Fexem_Imagen
 	const PNG	= 3;
 	const BMP	= 4;
 	
-	public function Fexem_Imagen( &$imagen = null )
+	public function __construct( &$imagen = null )
 	{
 		if( !is_null($imagen) )
 			$this->ponerImagen( $imagen );

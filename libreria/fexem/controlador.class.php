@@ -15,7 +15,7 @@ class Fexem_Controlador
 	
 	private $db;
 	
-	function Fexem_Controlador($accion, $parametros = null) {
+	function __construct($accion, $parametros = null) {
 		$this->post = new Fexem_Post();
 		$this->sesion = new Fexem_Sesion();
 		$this->get = new Fexem_Get();

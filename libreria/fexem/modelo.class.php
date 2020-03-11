@@ -4,7 +4,7 @@ class Fexem_Modelo
 {
 	protected $valores;
 	
-	function Fexem_Modelo($valores=null)
+	function __construct($valores=null)
 	{
 		if( is_array($valores) )
 			$this->valores = $valores;

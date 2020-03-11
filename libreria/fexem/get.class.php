@@ -1,7 +1,7 @@
 <?php
 class Fexem_Get extends Fexem_Modelo
 {
-	function Fexem_Get()
+	function __construct()
 	{
 		parent::Fexem_Modelo($_GET);
 		if( get_magic_quotes_gpc() ):

@@ -2,7 +2,7 @@
 
 class Fexem_Sesion extends Fexem_Modelo
 {
-	function Fexem_Sesion()
+	function __construct()
 	{
 		parent::Fexem_Modelo();
 		// Aplicar la sesión por referencia

@@ -8,7 +8,7 @@ class Fexem_Correo
 	private $vista;
 	private $cuerpo;
 	
-	public function Correo($para,$asunto)
+	public function __construct($para,$asunto)
 	{
 		$this->para = $para;
 		$this->asunto = $asunto;

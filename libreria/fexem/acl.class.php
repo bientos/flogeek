@@ -26,7 +26,7 @@ class Fexem_Acl
 	 * @param $accesos Arreglo de permisos.
 	 * @param $rol Rol actual.
 	 */
-	function Acl($accesos, $rol)
+	function __construct($accesos, $rol)
 	{
 		$this->rol = $rol;
 		$this->accesos = is_array($accesos)

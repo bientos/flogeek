@@ -12,7 +12,7 @@ class Fexem_Vista extends Smarty
 	private static $directorio_vistas;
 	private static $directorio_compilados;
 	
-	function Fexem_Vista()
+	function __construct()
 	{
 		$this->template_dir = self::$directorio_vistas;
 		$this->compile_dir = self::$directorio_compilados;
