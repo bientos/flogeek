@@ -6,10 +6,6 @@ class Fexem_Post extends Fexem_Modelo
 	{
 		parent::__construct();
 		// Filtrar los valores
-		if( get_magic_quotes_gpc() ):
-			foreach( $_POST as &$p )
-				$p = stripslashes($p);
-		endif;
 		$this->valores =& $_POST;
 	}	
 }

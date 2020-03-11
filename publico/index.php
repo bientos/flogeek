@@ -12,12 +12,12 @@ global $db;
 global $BASE_DIR;
 $BASE_DIR = dirname(dirname(__FILE__));
 
-function __autoload($class) {
+spl_autoload_register(function($class) {
 	$c = str_replace('_','/',strtolower($class).'.class.php');
 	require_once file_exists('../libreria/' . $c )
 		? '../libreria/' . $c
 		:  '../aplicacion/modelos/' . $c;
-}
+});
 
 require_once 'aplicacion/config.php';
 require_once 'libreria/fexem/aplicacion.class.php';

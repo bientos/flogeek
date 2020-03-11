@@ -118,7 +118,7 @@ class Fexem_Database
 	
 	function registrosAfectados()
 	{
-		return mysqli_affected_rows();
+		return mysqli_affected_rows(self::$conn);
 	}
 	
 	public function ejecutar($sql)
