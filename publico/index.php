@@ -40,7 +40,7 @@ $aplicacion = new Fexem_Aplicacion(
 		'password'	=> DB_PASS	
 	)
 );
-$aplicacion -> agregarRuta('@^([a-z0-9_.-]{4,16})/(\d+)$@i', 'flo', 'index');
-$aplicacion -> agregarRuta('@^([a-z0-9_.-]{4,16})/fotos$@i', 'flo', 'fotos');
-$aplicacion -> agregarRuta('@^([a-z0-9_.-]{4,16})$@i', 'flo', 'index');
+$aplicacion -> agregarRuta('/^([a-z0-9_.-]{4,16})\/(\d+)$/i', 'flo', 'index');
+$aplicacion -> agregarRuta('/^([a-z0-9_.-]{4,16})\/fotos$/i', 'flo', 'fotos');
+$aplicacion -> agregarRuta('/^([a-z0-9_.-]{4,16})$/i', 'flo', 'index');
 $aplicacion->lanzar();

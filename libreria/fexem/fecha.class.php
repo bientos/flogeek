@@ -21,7 +21,7 @@ class Fexem_Fecha
 	);
 	
 	private static $formato_entrada =
-		'@^(\d{4,4})-(\d{1,2})-(\d{1,2})(\s(\d{1,2}):(\d{1,2}):(\d{1,2}))?@';
+		'/^(\d{4,4})-(\d{1,2})-(\d{1,2})(\s(\d{1,2}):(\d{1,2}):(\d{1,2}))?/';
 	
 	function __construct($valor = null)
 	{

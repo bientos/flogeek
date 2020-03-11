@@ -79,7 +79,7 @@ class Fexem_Aplicacion
 		//    3. Eliminar las del fin.
 		//    4. Y las del principio.
 		//    5. Convertir el texto a minúsculas.
-		$_url = strtolower(preg_replace(array('@[?].*@','@/{2,}@','@/+$@','@^/+@'),array('','/','',''),$_SERVER['REQUEST_URI']));
+		$_url = strtolower(preg_replace(array('/[?].*/','/\/{2,}/','/\/+$/','/^\/+/'),array('','/','',''),$_SERVER['REQUEST_URI']));
 		
 		// Parsear la dirección ya limpia
 		$_URL = explode('/', $_url);
@@ -101,10 +101,10 @@ class Fexem_Aplicacion
 					array('index','index', array());
 			}
 			// Opción 3. O si es algún otro controlador
-			elseif( preg_match('@[a-z0-9_]@i', $_URL[0]) )
+			elseif( preg_match('/[a-z0-9_]/i', $_URL[0]) )
 			{
 				$cont = $_URL[0];
-				$accion = isset($_URL[1]) && preg_match('@[a-z0-9_]@i', $_URL[1])
+				$accion = isset($_URL[1]) && preg_match('/[a-z0-9_]/i', $_URL[1])
 					? $_URL[1]
 					: 'index';
 				$param = $accion != 'index' && isset($_URL[2])
