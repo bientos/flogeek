@@ -32,8 +32,8 @@ class Fexem_Database
 		else
 			$str_where = " AND {$campo} = '{$valor}'";
 		$qr = $this->ejecutar("SELECT * FROM {$tabla} WHERE 0 = 0{$str_where} LIMIT 1");
-		$r = (mysql_num_rows($qr) == 1);
-		mysql_free_result($qr);
+		$r = (mysqli_num_rows($qr) == 1);
+		mysqli_free_result($qr);
 		return $r;
 	}
 	
@@ -47,15 +47,15 @@ class Fexem_Database
 				else:
 					$inicio = false;
 				endif;
-				$sql_valores .= '`' . $k . '` = \'' . mysql_real_escape_string($v) . '\'';
+				$sql_valores .= '`' . $k . '` = \'' . mysqli_real_escape_string($v) . '\'';
 			endforeach;
 		endif;
 		
-		mysql_query( "
+		mysqli_query( "
 			INSERT INTO `{$tabla}`
 			SET	{$sql_valores}", self::$conn );
 		
-		return mysql_insert_id(self::$conn);
+		return mysqli_insert_id(self::$conn);
 	}
 	
 	function obtenerParejas($tabla,$campo_clave,$campo_valor)
@@ -77,22 +77,22 @@ class Fexem_Database
 	public function abrir() {
 		if( !self::$conn )
 		{
-			self::$conn = mysql_connect( self::$host, self::$usuario, self::$pass );
-			mysql_select_db( self::$nombre, self::$conn );
+			self::$conn = mysqli_connect( self::$host, self::$usuario, self::$pass );
+			mysqli_select_db( self::$conn, self::$nombre );
 		}
 	}
 
 	public function cerrar() {
-		@mysql_close( self::$conn );	
+		@mysqli_close( self::$conn );	
 	}
 	
 	public function unRegistro($query)
 	{
 		$qr = $this->ejecutar($query.' LIMIT 1');
-		if(!mysql_num_rows($qr))
+		if(!mysqli_num_rows($qr))
 			return NULL;
 		$rs = $this->leer($qr);
-		mysql_free_result($qr);
+		mysqli_free_result($qr);
 		
 		return $rs;
 	}
@@ -112,25 +112,25 @@ class Fexem_Database
 	function contarRegistros($query)
 	{
 		if( $query )
-			return mysql_num_rows($query);
+			return mysqli_num_rows($query);
 		return 0;
 	}
 	
 	function registrosAfectados()
 	{
-		return mysql_affected_rows();
+		return mysqli_affected_rows();
 	}
 	
 	public function ejecutar($sql)
 	{ 
 		try
 		{
-			echo mysql_error(self::$conn);
-			return mysql_query($sql,self::$conn);
+			echo mysqli_error(self::$conn);
+			return mysqli_query(self::$conn, $sql);
 		}
 		catch(Exception $ex)
 		{
-			throw new Exception(mysql_error(self::$conn));
+			throw new Exception(mysqli_error(self::$conn));
 		}	
 	}
 	
@@ -159,14 +159,14 @@ class Fexem_Database
 	}
 	
 	function leer($query) {
-		if( $reg = mysql_fetch_assoc($query) )
+		if( $reg = mysqli_fetch_assoc($query) )
 			return $reg;
 		return null;
 	}
 	
 	function leerModelo($query)
 	{
-		if( $mod = mysql_fetch_assoc($query) )
+		if( $mod = mysqli_fetch_assoc($query) )
 			return Fexem_Modelo::__crear($mod);
 		return null;
 	}

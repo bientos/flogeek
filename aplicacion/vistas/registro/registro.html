@@ -10,13 +10,13 @@
 		});
 	});
 </script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <!-- {/literal} -->
 <style type="text/css">
 {literal}
 #formRegistro{margin: 50px auto 0 auto;width: 550px;}
 #formRegistro table{margin: 0 auto;}
 p.Ayuda{padding: 5px;color: #a0a0a0; width: 250px;}
-input.TextBox{padding: 4px;}
 td.Nombre{line-height: 25px; vertical-align: top; text-align: right;}
 {/literal}
 </style>
@@ -24,47 +24,77 @@ td.Nombre{line-height: 25px; vertical-align: top; text-align: right;}
 <div class="MensajeError">{$registro.mensaje}</div>
 <form action="reg/hazlo" method="post" name="Registro" id="form-reg">
 <table cellspacing="10" style="margin: 0 auto;">
-	<tr>
-		<td class="Nombre" style="font-size: 20px;">Usuario:</td>
-		<td>
-			<input type="text" name="usuario" maxlength="32" value="{$registro.usuario}" class="TextBox" style="width: 250px; font-size: 20px;" />
-			<p class="Ayuda">
-				Debe ser entre 4 y 16 caracteres, letras, números, punto y guiones, sin espacios.
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td class="Nombre" style="font-size: 20px;line-height: 16px;">Contraseña:<br><span style="font-size: 12px; line-height: 12px;">2 veces</span></td>
-		<td>
-			<input type="password" name="password_a" value="{$registro.password_a}" class="TextBox" style="width: 120px;font-size: 20px;" />
-			<input type="password" name="password_b" value="{$registro.password_b}" class="TextBox"  style="width: 120px;font-size: 20px;" />
-			<p class="Ayuda">
-				Utiliza números, letras, $, %, &, #, *, !, -, _
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td class="Nombre" style="font-size: 20px;">Correo:</td>
-		<td colspan="3"><input type="text" name="mail" value="{$registro.mail}" class="TextBox"  style="width: 250px;font-size: 20px;" /></td>
-	</tr>
-	<tr>
-		<td class="Nombre" style="font-size: 20px;">Captcha:</td>
-		<td colspan="3">
-			<div style="overflow: hidden;">
-				<img src="//{$smarty.server.HTTP_HOST}/utl/captcha?{$registro.captcha_id}" align="left" style="margin-right: 10px;" />
-				<input type="text" name="catpcha" style="width: 100px; font-size: 20px;" class="TextBox"  />
-			</div>
-			<p class="Ayuda">
-				Reescribe las letras de la imagen en el recuadro de la derecha.
-			</p>
-		</td>
-	</tr>
-	<tr>
-		<td></td>
-		<td style="padding: 15px 0 15px 0;">
-			<input type="submit" name="Registrar" value="Regístrame!" style="width: 100px; height: 32px;">
-		</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td class="Nombre" style="font-size: 20px; vertical-align: middle;">Usuario:</td>
+			<td>
+				<input
+					type="text"
+					name="usuario"
+					value="{$registro.usuario}"
+					class="TextBox big full-width"
+					/>
+				
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<p class="Ayuda">
+					Debe ser entre 4 y 16 caracteres, letras, números, punto y guiones, sin espacios.
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td class="Nombre" style="font-size: 20px; vertical-align: middle;">
+				Contraseña:
+			</td>
+			<td>
+				<input type="password" name="password_a" value="{$registro.password_a}" class="TextBox big" />
+				<input type="password" name="password_b" value="{$registro.password_b}" class="TextBox big" />
+				<p class="Ayuda">
+					
+				</p>
+			</td>
+		</tr>
+		<tr>
+			<td class="Nombre" style="font-size: 20px; vertical-align: middle;">Correo:</td>
+			<td colspan="3">
+				<input type="text" name="mail" value="{$registro.mail}" class="TextBox big" style="width: 250px;font-size: 20px;" />
+			</td>
+		</tr>
+		<tr>
+			<td class="Nombre" style="font-size: 20px; vertical-align: middle;">Captcha:</td>
+			<td colspan="3">
+				<div class="g-recaptcha" data-sitekey="6Lf3OsIUAAAAAAK-AtJGxwT3RkBchp332tIssyZX"></div>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td style="padding: 15px 0 15px 0;">
+				<input type="submit" id="buttonRegister"
+					class="btn big primary animate-all-300" name="Registrar" value="¡Regístrame!">
+			</td>
+		</tr>
+	</tbody>
 </table>
 </form>
 </div>
+
+{literal}
+<script>
+	$('#form-reg').on('submit', function() {
+		// $('#buttonRegister').attr('disabled', true);
+		return false;
+	});
+</script>
+<script type="text/javascript">
+  var onloadCallback = function() {
+    
+  };
+</script>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
+{/literal}
