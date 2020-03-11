@@ -10,7 +10,7 @@ class Fexem_Layout extends Fexem_Vista
 	public static $archivo_interfaz;
 	public static $menu;
 
-	function Fexem_Layout($archivo = null)
+	function __construct($archivo = null)
 	{
 		parent::Fexem_Vista();
 		if( $archivo )
@@ -20,7 +20,7 @@ class Fexem_Layout extends Fexem_Vista
 	/**
 	 * Prepara el archivo principal del Layout.
 	 */
-	static function preparar($archivo)
+	static function preparar($archivo, $compilados = null)
 	{
 		self::$archivo_interfaz = $archivo;
 	}
@@ -28,7 +28,7 @@ class Fexem_Layout extends Fexem_Vista
 	/**
 	 * Mostrar la página junto al layout.
 	 */
-	function mostrar()
+	function mostrar($archivo = null)
 	{
 		if( $this->archivo_contenido )
 			$this->aplicar('contenido', $this->fetch($this->archivo_contenido));
@@ -45,7 +45,7 @@ class Fexem_Layout extends Fexem_Vista
 	 * @param $valores
 	 * @return unknown_type
 	 */
-	function &llenar($archivo, $valores = null)
+	function llenar($archivo, $valores = null)
 	{
 		$this->archivo_contenido = $archivo;
 		if( is_array($valores) )
@@ -54,7 +54,7 @@ class Fexem_Layout extends Fexem_Vista
 		return $this;
 	}
 	
-	function &imprimir($contenido)
+	function imprimir($contenido)
 	{
 		$this->aplicar('contenido', $contenido);
 		return $this;
