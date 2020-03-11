@@ -12,7 +12,7 @@ class Fexem_Layout extends Fexem_Vista
 
 	function __construct($archivo = null)
 	{
-		parent::Fexem_Vista();
+		parent::__construct();
 		if( $archivo )
 			$this->archivo_contenido = $archivo;
 	}

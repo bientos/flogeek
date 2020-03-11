@@ -4,7 +4,7 @@ class Fexem_Sesion extends Fexem_Modelo
 {
 	function __construct()
 	{
-		parent::Fexem_Modelo();
+		parent::__construct();
 		// Aplicar la sesión por referencia
 		$this->valores =& $_SESSION;
 	}
