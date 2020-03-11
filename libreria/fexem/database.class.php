@@ -32,7 +32,7 @@ class Fexem_Database
 		else
 			$str_where = " AND {$campo} = '{$valor}'";
 		$qr = $this->ejecutar("SELECT * FROM {$tabla} WHERE 0 = 0{$str_where} LIMIT 1");
-		$r = (mysqli_num_rows($qr) == 1);
+		$r = ($qr->num_rows == 1);
 		mysqli_free_result($qr);
 		return $r;
 	}
@@ -47,13 +47,13 @@ class Fexem_Database
 				else:
 					$inicio = false;
 				endif;
-				$sql_valores .= '`' . $k . '` = \'' . mysqli_real_escape_string($v) . '\'';
+				$sql_valores .= '`' . $k . '` = \'' . mysqli_real_escape_string(self::$conn, $v) . '\'';
 			endforeach;
 		endif;
 		
-		mysqli_query( "
+		mysqli_query(self::$conn, "
 			INSERT INTO `{$tabla}`
-			SET	{$sql_valores}", self::$conn );
+			SET	{$sql_valores}");
 		
 		return mysqli_insert_id(self::$conn);
 	}
@@ -112,7 +112,7 @@ class Fexem_Database
 	function contarRegistros($query)
 	{
 		if( $query )
-			return mysqli_num_rows($query);
+			return $query->num_rows;
 		return 0;
 	}
 	
